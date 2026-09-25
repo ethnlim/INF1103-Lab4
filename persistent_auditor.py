@@ -31,8 +31,17 @@ def generate_report(total_units, failed_attempts):
     print(f"Total Units Processed: {total_units}")
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
 
+def load_inventory(filename="inventory.txt"):
+    #Load saved total and transaction history. Returns (total, history).
+    try:
+        with open(filename, "r") as f:
+            print("File opened successfully!!")
+    except FileNotFoundError:
+        print("File not found, starting fresh.")
+        return 0, []
 
 def main():
+    load_inventory()  # test call
     total_inventory = 0
     failed_entries = 0
 
