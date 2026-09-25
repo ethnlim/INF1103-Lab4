@@ -35,14 +35,17 @@ def load_inventory(filename="inventory.txt"):
     #Load saved total and transaction history. Returns (total, history).
     try:
         with open(filename, "r") as f:
-            print("File opened successfully!!")
+            lines = f.readlines()
+            total = int(lines[0].strip())
+            history = [int(line.strip()) for line in lines[1:]]
+            return total, history
     except FileNotFoundError:
         print("File not found, starting fresh.")
         return 0, []
 
 def main():
-    load_inventory()  # test call
-    total_inventory = 0
+    total_inventory, history = load_inventory()  # test call
+    print("Loaded: ", total_inventory, history)
     failed_entries = 0
 
     print("Enter the number of items in inventory: or type 'quit' to exit")
