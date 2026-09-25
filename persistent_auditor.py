@@ -43,6 +43,13 @@ def load_inventory(filename="inventory.txt"):
         print("File not found, starting fresh.")
         return 0, []
 
+def save_inventory(total, history, filename="inventory.txt"):
+    #Save total and transaction history to a file.
+    with open(filename, "w") as f:
+        f.write(str(total) + "\n")
+        for item in history:
+            f.write(str(item) + "\n")
+
 def main():
     total_inventory, history = load_inventory()  # test call
     print("Loaded: ", total_inventory, history)
@@ -54,6 +61,7 @@ def main():
         quantity, is_valid, is_quit = get_valid_input()
 
         if is_quit:
+            save_inventory(total_inventory, history)
             print("Exiting the auditor.")
             break
 
