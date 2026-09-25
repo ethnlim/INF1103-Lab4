@@ -62,6 +62,8 @@ def main():
             continue
 
         total_inventory = process_delivery(total_inventory, quantity)
+        history.append(quantity)
+        print("History of deliveries so far:", history)
         tax = calculate_tax(quantity)
         print(f"Added {quantity} items to inventory. Tax for this delivery: {tax:.2f}")
         print(f"Total inventory is now: {total_inventory}\n")
